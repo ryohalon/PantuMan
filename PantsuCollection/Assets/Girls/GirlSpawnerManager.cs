@@ -18,6 +18,8 @@ public class GirlSpawnerManager : MonoBehaviour {
     [SerializeField]
     GameObject girlObject = null;
 
+    [SerializeField]
+    TimeManager timeManager = null;
 
 
 	// Use this for initialization
@@ -27,11 +29,18 @@ public class GirlSpawnerManager : MonoBehaviour {
             Debug.Log("GirlObject is null");
         }
 
+        if (timeManager == null)
+        {
+            Debug.Log("timeManager is null");
+        }
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (timeManager.IsWaiting) return;
+
+
 	    if(Input.GetKeyDown(spawnKey))
         {
             var clone = Instantiate(girlObject);

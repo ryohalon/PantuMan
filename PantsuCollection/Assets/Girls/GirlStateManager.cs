@@ -34,7 +34,6 @@ public class GirlStateManager : MonoBehaviour {
         //! 斬られる処理
         if (state == State.walking && true /*斬られる範囲内*/ && Input.GetMouseButtonDown(0))
         {
-            Debug.Log("kita");
             GetComponent<PantsuManager>().canDropped = true;
             state = State.running;
         }
