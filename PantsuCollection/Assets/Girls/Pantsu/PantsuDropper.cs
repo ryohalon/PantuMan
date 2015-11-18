@@ -51,6 +51,7 @@ public class PantsuDropper : MonoBehaviour
                 iTween.MoveAdd(gameObject, iTween.Hash("y", fallSpeed, "time", fallingLandingTimer_Y, "easetype", D_MoveType));
                 iTween.MoveTo(gameObject, iTween.Hash("x", transform.localPosition.x + 500f, "y", transform.localPosition.y + 250, "delay", fallingLandingTimer_X, "time", fallingLandingTimer_X, "easetype", h_MoveType));
                 isStartFalling = true;
+                Destroy(gameObject, fallingLandingTimer_X + fallingLandingTimer_X);
             }
 
 
