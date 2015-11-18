@@ -9,6 +9,18 @@ public class GirlStateManager : MonoBehaviour {
         running     //逃げている
     }
 
+    [SerializeField]
+    public float attainmentLevel = 0.0f;
+
+    [SerializeField]
+    private float girlMoveSpeed = 1.0f;
+
+    [SerializeField]
+    private float beginKillZone = 80.0f;
+
+    [SerializeField]
+    private float endKillZone = 90.0f;
+
     public State state = State.walking;
 
 	// Use this for initialization

@@ -7,7 +7,10 @@ public class GirlSpawnerManager : MonoBehaviour {
     KeyCode spawnKey = KeyCode.A;
 
     [SerializeField]
-    Vector3 spawnPosition = Vector3.zero;
+    Vector3 spawnPosition = new Vector3(5.0f, 0.0f, 10.0f);
+
+    [SerializeField]
+    Vector3 spawnScale = new Vector3(0.1f, 0.1f, 1.0f);
 
     [SerializeField]
     Transform girlsList = null;
@@ -45,7 +48,7 @@ public class GirlSpawnerManager : MonoBehaviour {
 
             var rectTrans = clone.GetComponent<RectTransform>();
             rectTrans.localPosition = spawnPosition;
-            rectTrans.localScale = Vector3.one;// new Vector3(1,1,1);    
+            rectTrans.localScale = spawnScale;
 
         }
 	}
