@@ -36,6 +36,7 @@ public class GirlStateManager : MonoBehaviour {
         {
             GetComponent<PantsuManager>().canDropped = true;
             state = State.running;
+            Score.PantsuCount += 1;
         }
 
     }
