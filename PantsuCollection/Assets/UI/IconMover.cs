@@ -17,7 +17,7 @@ public class IconMover : MonoBehaviour {
     //Use this for initialization
 	void Start () {
         transform.localPosition = new Vector3(0, StartY, 0);
-        iTween.MoveTo(gameObject, iTween.Hash("islocal" ,true, "y", GoalY, "time", moveTime, "easeType", easeType));
+        iTween.MoveTo(gameObject, iTween.Hash("islocal" ,true, "y", GoalY, "time", moveTime, "easeType", iTween.EaseType.linear));
         Destroy(gameObject, moveTime + 0.1f);
 	}
 	

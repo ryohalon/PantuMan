@@ -43,6 +43,8 @@ public class PlayerStateManager : MonoBehaviour {
         var clone = Instantiate(blackScreen);
         clone.transform.SetParent(screen);
 
+        GetComponent<AudioSource>().Play();
+
         yield return new WaitForSeconds(sceneFadeTime);
 
         Application.LoadLevel("Result");

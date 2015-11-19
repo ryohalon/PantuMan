@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HPManager : MonoBehaviour {
 
-    public int NowHP { get; set; }
+    public static int NowHP { get; set; }
 
     [SerializeField]
     int maxHP = 10;

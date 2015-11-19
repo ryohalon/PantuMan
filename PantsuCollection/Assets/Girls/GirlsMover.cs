@@ -21,7 +21,7 @@ public class GirlsMover : MonoBehaviour {
         //移動速度（大）
         //iTween.MoveTo(gameObject, iTween.Hash("x", -50.0f, "time", time, "easetype", iTween.EaseType.easeInQuint));
 
-        iTween.ScaleTo(gameObject, iTween.Hash("y", girlScleMax, "x", girlScleMax, "time", scaleTime, "easetype", iTween.EaseType.easeInQuart));
+        iTween.ScaleTo(gameObject, iTween.Hash("y", girlScleMax, "x", girlScleMax, "time", positionTime, "easetype", iTween.EaseType.easeInQuart));
 
     }
 
