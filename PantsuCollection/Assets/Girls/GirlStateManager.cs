@@ -31,9 +31,13 @@ public class GirlStateManager : MonoBehaviour {
 
     public bool IsOssan { get; set; }
 
+    int pantsuID = 0;
+
 	// Use this for initialization
 	void Start () {
         Destroy(gameObject, lifeTime+0.1f);
+
+        pantsuID = Random.Range(0, 2);
 
         totalTime = 0.0f;
 	}
@@ -63,7 +67,7 @@ public class GirlStateManager : MonoBehaviour {
             }
             else
             {
-                Score.PantsuCount += 1;
+                Score.PantsuCount.Add(pantsuID);
             }
 
         }

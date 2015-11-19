@@ -16,13 +16,14 @@ public class Score : MonoBehaviour {
     [SerializeField]
     List<scoreMessage> messageList = new List<scoreMessage>();
 
-    public static int PantsuCount = 0;
+    public static List<int> PantsuCount = new List<int>(); 
+
 
     GameObject screenCanvas = null;
 
 	// Use this for initialization
 	void Start () {
-        PantsuCount = 0;
+        PantsuCount.Clear();
         screenCanvas = GameObject.Find("ScreenCanvas");
 	}
 
@@ -33,7 +34,7 @@ public class Score : MonoBehaviour {
 	void Update () {
         foreach (var message in messageList)
         {
-            if (message.count == PantsuCount)
+            if (message.count == PantsuCount.Count)
             {
                 var clone = Instantiate(scoreMessageText);
                 clone.transform.SetParent(screenCanvas.transform);

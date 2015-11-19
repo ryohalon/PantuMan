@@ -13,6 +13,6 @@ public class ScoreText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        thisText.text = "もぎ取ったパンツの数" + Score.PantsuCount.ToString();
+       thisText.text = Score.PantsuCount.Count + "枚";
 	}
 }
