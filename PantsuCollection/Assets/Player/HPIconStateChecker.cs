@@ -14,7 +14,7 @@ public class HPIconStateChecker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (playerHP.NowHP < DeadLineHP)
+        if (HPManager.NowHP < DeadLineHP)
         {
             DeadEvent();
         }

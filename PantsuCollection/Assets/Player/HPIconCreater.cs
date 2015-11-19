@@ -22,7 +22,7 @@ public class HPIconCreater : MonoBehaviour {
             Debug.Log("hpManager is null");
         }
 
-        for (int iconNumber = 0; iconNumber < hpManager.NowHP; ++iconNumber)
+        for (int iconNumber = 0; iconNumber < HPManager.NowHP; ++iconNumber)
         {
             var clone = Instantiate(hpIconObj);
             clone.transform.SetParent(transform);

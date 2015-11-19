@@ -3,8 +3,7 @@ using System.Collections;
 
 public class GirlsMover : MonoBehaviour {
 
-    [SerializeField]
-    private float positionTime = 2.0f;
+    public float positionTime = 2.0f;
 
     [SerializeField]
     private float scaleTime = 1.7f;
@@ -14,12 +13,7 @@ public class GirlsMover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
+
         //移動速度（省）
         //iTween.MoveTo(gameObject, iTween.Hash("x", -50.0f, "time", time, "easetype", iTween.EaseType.easeInCubic));
         //移動速度（中）
@@ -27,7 +21,13 @@ public class GirlsMover : MonoBehaviour {
         //移動速度（大）
         //iTween.MoveTo(gameObject, iTween.Hash("x", -50.0f, "time", time, "easetype", iTween.EaseType.easeInQuint));
 
-        iTween.ScaleTo(gameObject, iTween.Hash("y", girlScleMax, "x", girlScleMax, "time", scaleTime, "easetype", iTween.EaseType.easeInQuart));
+        iTween.ScaleTo(gameObject, iTween.Hash("y", girlScleMax, "x", girlScleMax, "time", positionTime, "easetype", iTween.EaseType.easeInQuart));
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+        
 
     }
 }

@@ -8,7 +8,18 @@ public class StartCounter : MonoBehaviour {
     TimeManager timeManager = null;
 
     [SerializeField]
+    string waitingMessage = "Waiting...";
+
+    [SerializeField]
+    int waitingMessageSize = 82;
+
+
+    [SerializeField]
     string startMessage = "START!!";
+
+    [SerializeField]
+    int startMessageSize = 108;
+
 
     Text thisText = null;
 
@@ -35,9 +46,10 @@ public class StartCounter : MonoBehaviour {
 
         if(timeManager.IsWaiting)
         {
-            thisText.text = (timeManager.WaitingTime - timeManager.NowTime).ToString("N2");
+            thisText.text = waitingMessage;
+            thisText.fontSize = waitingMessageSize;
 
-            thisText.color = new Color(thisText.color.r, thisText.color.g, thisText.color.b, 1.1f - timeManager.NowTime % 1.0f);
+            thisText.color = new Color(thisText.color.r, thisText.color.g, thisText.color.b, timeManager.WaitingTime + 0.1f - timeManager.NowTime % timeManager.WaitingTime);
         }
         else 
         {
@@ -45,6 +57,7 @@ public class StartCounter : MonoBehaviour {
             {
                 Destroy(gameObject, 1.0f);
                 alreadyCallDestroy = true;
+                thisText.fontSize = startMessageSize;
             }
 
             thisText.text = startMessage;
