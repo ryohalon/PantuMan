@@ -42,4 +42,14 @@ public class PantsuManager : MonoBehaviour {
             Destroy(this);
          }
 	}
+
+    void OnDestroy()
+    {
+        if (transform.childCount >= 1 && !GetComponent<GirlStateManager>().IsOssan)
+        {
+            --HPManager.NowHP;
+        }
+
+    }
+
 }

@@ -57,14 +57,32 @@ public class GirlSpawnerManager : MonoBehaviour {
             Debug.Log("timeManager is null");
         }
 
+        coolTime = spawnInterval;
 	}
     [SerializeField]
     float spawnInterval = 5.0f;
+
+    [SerializeField]
+    float minSpawnInterval = 0.5f;
+    [SerializeField]
+    float maxSpawnInterval = 5.0f;
 
     float coolTime = 0.0f;
 	// Update is called once per frame
 	void Update () {
         if (timeManager.IsWaiting) return;
+
+
+
+        if (spawnInterval <= minSpawnInterval)
+        {
+            spawnInterval = minSpawnInterval;
+        }
+        else
+        {
+            spawnInterval -= ((maxSpawnInterval - minSpawnInterval) / 60f) * Time.deltaTime;
+        }
+
 
 
         coolTime += Time.deltaTime;
