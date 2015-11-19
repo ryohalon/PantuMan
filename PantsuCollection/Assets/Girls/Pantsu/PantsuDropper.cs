@@ -6,36 +6,48 @@ public class PantsuDropper : MonoBehaviour
 
     public bool isFalling { get; set; }
 
-    [SerializeField, Range(0.0f, 10.0f)]
-    float fallingSpeed = 12;
-    [SerializeField]
-    float fallingLandingTimer_Y = 1.0f;
-    float fallingLandingTimer_X = 1.2f;
+    
+  
+	[SerializeField]
+	private float dropSpeed_x = 1.0f;
 
-    [SerializeField]
-    iTween.EaseType D_MoveType = iTween.EaseType.easeInOutQuad;
+	[SerializeField]
+	private float dropSpeed_y = 200.0f;
+   
+	[SerializeField]
+	float pant_curve_power_x=0.0f;
 
-    [SerializeField]
-    iTween.EaseType h_MoveType = iTween.EaseType.easeInOutBounce;
+	[SerializeField]
+	float pant_curve_power_y=-50.0f;
+
+	[SerializeField]
+	float pant_slide_power_x=0.0f;
+
+	[SerializeField]
+	float pant_slide_power_y=0.0f;
+
+
 
     // Use this for initialization
     void Start()
     {
-        defaultLocalPosition = transform.localPosition;
+		defaultLocalPosition = transform.localPosition =new Vector3 (pant_slide_power_x, pant_slide_power_y, 0f);
+
+
     }
 
-    [SerializeField]
-    float fallSpeed = -100f;
-
+  
     [SerializeField]
     float shakeValue = 50f;
 
-    [SerializeField]
-    float shakeTimeSpan = 0.5f;
 
+   
     Vector3 defaultLocalPosition = Vector3.zero;
 
     float shakingTime = 0.0f;
+
+	public Bezier myBezier;
+	private float t = 0f;
 
     bool isStartFalling = false;
 
@@ -48,17 +60,39 @@ public class PantsuDropper : MonoBehaviour
         {
             if (isStartFalling == false)
             {
-                iTween.MoveAdd(gameObject, iTween.Hash("y", fallSpeed, "time", fallingLandingTimer_Y, "easetype", D_MoveType));
-                iTween.MoveTo(gameObject, iTween.Hash("x", transform.localPosition.x + 500f, "y", transform.localPosition.y + 250, "delay", fallingLandingTimer_X, "time", fallingLandingTimer_X, "easetype", h_MoveType));
-                isStartFalling = true;
-                Destroy(gameObject, fallingLandingTimer_X + fallingLandingTimer_X);
+				Pant_Curve();
             }
 
-
-            gameObject.transform.localPosition = new Vector3(defaultLocalPosition.x + Mathf.Sin(shakingTime) * shakeValue,
-                                                             transform.localPosition.y, transform.localPosition.z);
-
+            //gameObject.transform.localPosition = new Vector3(defaultLocalPosition.x + Mathf.Sin(shakingTime) * shakeValue,
+                                                             //transform.localPosition.y, transform.localPosition.z);
         }
 
     }
+
+	void Pant_Curve(){
+
+		//transform.Rotate (pant_curve_power_x,pant_curve_power_y,0);
+		//transform.Translate (pant_curve_power_x,pant_curve_power_y ,0,0);
+		transform.Translate (Vector3.down * dropSpeed_y);
+		transform.Translate (Vector3.right * dropSpeed_x);
+		pant_curve_power_x += 0.1f;
+		pant_curve_power_y += 0.16f;
+		pant_curve_power_y *= -1.0f;
+
+		dropSpeed_x += 0.07f;
+		dropSpeed_y -= 0.05f;
+	
+	}
+
+	void Pant_Slider(){
+
+		if (transform.localPosition.y <= 50) {
+
+			pant_slide_power_x += 1.0f;
+			//pant_curve_power_y -= 2.0f;
+
+		}
+
+	}
+
 }
