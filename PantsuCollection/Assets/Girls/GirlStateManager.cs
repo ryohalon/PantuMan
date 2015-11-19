@@ -10,6 +10,11 @@ public class GirlStateManager : MonoBehaviour {
     }
 
     [SerializeField]
+    private float lifeTime = 2.0f;
+
+    private float totalTime = 0.0f;
+
+    [SerializeField]
     public float attainmentLevel = 0.0f;
 
     [SerializeField]
@@ -25,14 +30,22 @@ public class GirlStateManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Destroy(gameObject, lifeTime+0.1f);
 
+        totalTime = 0.0f;
 	}
+
+    void Awake(){
+        GetComponent<GirlsMover>().positionTime = lifeTime;
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
+        totalTime += Time.deltaTime;
+
         //! 斬られる処理
-        if (state == State.walking && true /*斬られる範囲内*/ && Input.GetMouseButtonDown(0))
+        if (state == State.walking && IsKillingTime() && Input.GetMouseButtonDown(0))
         {
             GetComponent<PantsuManager>().canDropped = true;
             state = State.running;
@@ -40,4 +53,13 @@ public class GirlStateManager : MonoBehaviour {
         }
 
     }
+
+    public bool IsKillingTime(){
+
+        if (totalTime <= lifeTime * (beginKillZone / 100.0f)) return false;
+        if (totalTime >= lifeTime * (endKillZone / 100.0f)) return false;
+
+        return true;
+    }
+
 }
