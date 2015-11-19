@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
 using System.Collections;
 
 public class PantsuDropper : MonoBehaviour
@@ -36,6 +38,8 @@ public class PantsuDropper : MonoBehaviour
 
 	Animater anime = null;
 
+	Image thisImage = null;
+
     // Use this for initialization
     void Start()
     {
@@ -46,6 +50,13 @@ public class PantsuDropper : MonoBehaviour
 		} else {
 			anime.IsPlay = false;
 		}
+
+		thisImage = GetComponent<Image> ();
+		if (thisImage == null) {
+			Debug.Log("thisImage is Null");
+		}
+
+
     }
 
   
@@ -68,6 +79,7 @@ public class PantsuDropper : MonoBehaviour
         {
             if (isStartFalling == false)
             {
+				thisImage.enabled = true;
 				anime.IsPlay = true;
 				Pant_Curve();
 				destroyTime += Time.deltaTime;

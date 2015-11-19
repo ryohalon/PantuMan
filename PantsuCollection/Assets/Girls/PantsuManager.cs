@@ -45,7 +45,7 @@ public class PantsuManager : MonoBehaviour {
 
     void OnDestroy()
     {
-        if (transform.childCount >= 1 && !GetComponent<GirlStateManager>().IsOssan)
+        if (transform.childCount > 1 && !GetComponent<GirlStateManager>().IsOssan)
         {
             --HPManager.NowHP;
         }
