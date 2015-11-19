@@ -22,6 +22,13 @@ public class Animater : MonoBehaviour {
 
     float playingTime = 0.0f;
 
+	public bool IsPlay { get; set;}
+
+	void Awake()
+	{
+		IsPlay = true;
+	}
+
 	// Use this for initialization
 	void Start () {
         thisImage = GetComponent<Image>();
@@ -41,6 +48,9 @@ public class Animater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (IsPlay == false)
+			return;
+
         playingTime += Time.deltaTime;
         if (playingTime >= animationDataList[nowAnimationIndex].animationTime)
         {
