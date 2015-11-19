@@ -107,6 +107,11 @@ public class GirlSpawnerManager : MonoBehaviour {
         charachange = Random.Range(0, animaters.Length);
         Destroy(animaters[charachange]);
 
+        var childAnime = obj.transform.GetChild(1).GetComponents<Animater>();
+        Destroy(childAnime[charachange]);
+
+
+
     }
 
     void Spawn()
