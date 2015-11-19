@@ -19,11 +19,27 @@ public class GirlSpawnerManager : MonoBehaviour {
     GameObject girlObject = null;
 
     [SerializeField]
+    GameObject ossanObject = null;
+
+    [SerializeField]
     TimeManager timeManager = null;
 
+    private float arrivalProbability = 0.0f;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private float girlArrivalProbability = 70.0f;
+
+    [SerializeField]
+    private float probabilityMin = 0.0f;
+
+    [SerializeField]
+    private float probabilityMax = 100.0f;
+
+    
+
+
+    // Use this for initialization
+    void Start () {
         if (girlObject == null)
         {
             Debug.Log("GirlObject is null");
@@ -40,16 +56,26 @@ public class GirlSpawnerManager : MonoBehaviour {
 	void Update () {
         if (timeManager.IsWaiting) return;
 
+        arrivalProbability = Random.Range(probabilityMin, probabilityMax);
 
-	    if(Input.GetKeyDown(spawnKey))
+        GameObject clone = null;
+
+        if (arrivalProbability <= girlArrivalProbability)
         {
-            var clone = Instantiate(girlObject);
-            clone.transform.SetParent(girlsList);
-
-            var rectTrans = clone.GetComponent<RectTransform>();
-            rectTrans.localPosition = spawnPosition;
-            rectTrans.localScale = spawnScale;
-
+            clone = Instantiate(girlObject);
         }
+        else
+        {
+            clone = Instantiate(ossanObject);
+
+            clone.GetComponent<GirlStateManager>().IsOssan = true;
+        }
+            
+        clone.transform.SetParent(girlsList);
+
+        var rectTrans = clone.GetComponent<RectTransform>();
+        rectTrans.localPosition = spawnPosition;
+        rectTrans.localScale = spawnScale;
+
 	}
 }

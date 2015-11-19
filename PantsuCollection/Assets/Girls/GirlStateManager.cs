@@ -28,6 +28,8 @@ public class GirlStateManager : MonoBehaviour {
 
     public State state = State.walking;
 
+    public bool IsOssan { get; set; }
+
 	// Use this for initialization
 	void Start () {
         Destroy(gameObject, lifeTime+0.1f);
@@ -37,6 +39,8 @@ public class GirlStateManager : MonoBehaviour {
 
     void Awake(){
         GetComponent<GirlsMover>().positionTime = lifeTime;
+
+        IsOssan = false;
     }
 	
 	// Update is called once per frame
@@ -50,6 +54,12 @@ public class GirlStateManager : MonoBehaviour {
             GetComponent<PantsuManager>().canDropped = true;
             state = State.running;
             Score.PantsuCount += 1;
+
+            if (IsOssan)
+            {
+
+            }
+
         }
 
     }
