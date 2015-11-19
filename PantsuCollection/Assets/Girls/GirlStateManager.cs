@@ -54,13 +54,16 @@ public class GirlStateManager : MonoBehaviour {
         {
             GetComponent<PantsuManager>().canDropped = true;
             state = State.running;
-            Score.PantsuCount += 1;
             GetComponent<AudioSource>().Play();
 
 
             if (IsOssan)
             {
                 --HPManager.NowHP;
+            }
+            else
+            {
+                Score.PantsuCount += 1;
             }
 
         }
