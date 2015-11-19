@@ -44,6 +44,9 @@ public class GirlSpawnerManager : MonoBehaviour {
     [SerializeField]
     Transform enemyBar = null;
 
+    [SerializeField]
+    private int charachange = 0;
+
 
     // Use this for initialization
     void Start () {
@@ -94,6 +97,18 @@ public class GirlSpawnerManager : MonoBehaviour {
 
     }
 
+    void CharaChange(GameObject obj)
+    {
+
+        var animaters = obj.GetComponents<Animater>();
+
+        if (animaters == null) return;
+
+        charachange = Random.Range(0, animaters.Length);
+        Destroy(animaters[charachange]);
+
+    }
+
     void Spawn()
     {
         arrivalProbability = Random.Range(probabilityMin, probabilityMax);
@@ -107,6 +122,8 @@ public class GirlSpawnerManager : MonoBehaviour {
             girlIconClone.transform.SetParent(enemyBar);
             girlIconClone.transform.localScale = Vector3.one;
             girlIconClone.GetComponent<IconMover>().moveTime = clone.GetComponent<GirlStateManager>().lifeTime;
+
+            CharaChange(clone);
 
         }
         else
