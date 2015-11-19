@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GirlStateManager : MonoBehaviour {
 
+    public bool isOssan { get;set; }
+
     public enum State
     {
         walking,    //こっちに向かってい

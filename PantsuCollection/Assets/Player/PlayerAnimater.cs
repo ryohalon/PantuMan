@@ -48,6 +48,7 @@ public class PlayerAnimater : MonoBehaviour {
         {
             isAttacking = true;
             thisImage.sprite = spriteList[(int)AnimationID.attack01];
+            animationTime = 0f;
 
         }
 
